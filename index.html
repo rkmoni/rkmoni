@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Document metadata and SEO configuration -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anaroul Hasan - Portfolio</title>
+  <meta name="description" content="The official links, portfolio, experience, and projects for Anaroul Hasan. Connect with Meraz on all platforms.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://helloanaroul.github.io/">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/TB5wqMqC/profile.jpg">
+  <link rel="icon" href="https://i.ibb.co/TB5wqMqC/profile.jpg" sizes="any">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/TB5wqMqC/profile.jpg">
+  
+  <!-- Open Graph Protocol for social media sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://helloanaroul.github.io/">
+  <meta property="og:title" content="Anaroul Hasan - Official Site">
+  <meta property="og:description" content="Connect with Anaroul Hasan. Explore portfolio, projects, and professional experience.">
+  <meta property="og:image" content="/asset/cover.png">
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anaroul Hasan - Official Site">
+  <meta name="twitter:description" content="Connect with Meraz on all platforms.">
+  <meta name="twitter:image" content="https://i.ibb.co/TB5wqMqC/profile.jpg">
+  
+  <!-- Google site verification -->
+  <meta name="google-site-verification" content="xFLsjOxj-_LmqII3_ySAzSehFrpLXjy4U-OPFFCCgDc">
+
+  <!-- MiSans Fonts Import -->
+  <link rel="stylesheet" href="/fonts.css">
+  
+  <!-- External libraries and stylesheets -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    /*
+     * Portfolio Website Styles
+     * ======================
+     * This file contains all the CSS for the portfolio website.
+     * It is organized by sections for easy maintenance and readability.
+     */
+
+    /* =============================================
+     * CSS Custom Properties (Variables)
+     * ============================================= */
+    :root {
+      /* Layout variables */
+      --bottom-nav-height: 55px;
+      
+      /* Color palette */
+      --ui-bg-base: #ffffff;           /* Base background color */
+      --ui-bg-component: #ffffff;      /* Component background color */
+      --ui-border-base: #eeeeee;       /* Base border color */
+      --ui-fg-base: #000000;           /* Base foreground/text color */
+      --ui-fg-muted: #555555;          /* Muted text color */
+      --ui-fg-interactive: #000000;    /* Interactive element color */
+    }
+
+    /* =============================================
+     * Base Styles
+     * ============================================= */
+    body {
+      font-family: 'MiSans', monospace;
+      background-color: var(--ui-bg-base);
+      color: var(--ui-fg-base);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Selection highlighting */
+    ::selection {
+      background-color: var(--ui-fg-base);
+      color: var(--ui-bg-base);
+    }
+
+    /* Hide scrollbar for cleaner appearance */
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+
+    /* =============================================
+     * Animation Definitions
+     * ============================================= */
+    @keyframes spin {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* =============================================
+     * Animation Classes
+     * ============================================= */
+    .animate-card {
+      animation: 0.5s ease-out forwards fadeInUp;
+      animation-delay: var(--animation-delay, 0s);
+      opacity: 0;
+    }
+
+    .fade-in-section {
+      animation: 0.5s fadeIn;
+    }
+
+    /* Search highlight effect */
+    .search-highlight {
+      background-color: rgb(0 0 0 / 0.1);
+      border-radius: 2px;
+    }
+
+    /* =============================================
+     * Navigation Styles
+     * ============================================= */
+    #nav-container {
+      display: flex;
+      height: 100%;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      background-color: var(--ui-bg-component);
+      border-top: 1px solid var(--ui-border-base);
+    }
+
+    .nav-link {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      color: var(--ui-fg-muted);
+      transition: color 0.2s ease-in-out;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .nav-link.active {
+      color: var(--ui-fg-interactive);
+      font-weight: 700;
+    }
+
+    .nav-link i {
+      font-size: 1.3rem;
+      margin-bottom: 2px;
+    }
+
+    .nav-link span {
+      font-size: 0.6rem;
+    }
+
+    /* =============================================
+     * Responsive Styles
+     * ============================================= */
+    @media (min-width: 1024px) {
+      body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        padding: 20px;
+      }
+      
+      #floating-nav {
+        position: relative;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        width: 100%;
+        height: auto;
+        max-width: none;
+        grid-column: 1;
+        grid-row: 1;
+      }
+      
+      #nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        background-color: var(--ui-bg-component);
+        border: 1px solid var(--ui-border-base);
+        border-radius: 8px;
+        padding: 1rem 0;
+        height: auto;
+      }
+      
+      .nav-link {
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-grow: 0;
+        height: auto;
+        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link:hover {
+        background-color: #f8f9fa;
+        color: var(--ui-fg-base);
+      }
+      
+      .nav-link.active {
+        font-weight: 700;
+        background-color: #e9ecef;
+      }
+      
+      .nav-link i {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 1.1rem;
+      }
+      
+      .nav-link span {
+        font-size: 0.9rem;
+      }
+      
+      main {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 0 2rem !important;
+      }
+    }
+
+    /* =============================================
+     * Accessibility Utilities
+     * ============================================= */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .focus:not-sr-only {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0.5rem;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+    }
+
+    /* =============================================
+     * Lazy Loading Utilities
+     * ============================================= */
+    .lazy {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .lazy[data-src] {
+      opacity: 1;
+    }
+    
+    .section {
+      display: none;
+    }
+    
+    .section.active {
+      display: block;
+    }
+    
+    .link-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      margin: 8px 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+    
+    .link-item:hover {
+      background: #e9ecef;
+      transform: translateX(5px);
+    }
+    
+    .link-item i {
+      margin-right: 12px;
+      font-size: 1.2em;
+      color: #000000;
+    }
+    
+
+  </style>
+</head>
+<body class="w-full" oncontextmenu="event.preventDefault(); return false;">
+  <!-- Skip navigation link for accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded-lg">
+    Skip to main content
+  </a>
+  
+  <!-- Loading indicator for user feedback during content loading -->
+  <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white transition-opacity duration-300" style="display: none; opacity: 0;">
+    <div class="h-10 w-10 animate-spin rounded-full border-2 border-black border-t-transparent" role="status" aria-label="Loading content"></div>
+    <p id="loader-text" class="mt-4 text-sm text-[color:var(--ui-fg-muted)]" aria-live="polite"></p>
+  </div>
+  
+  <!-- Main content area with skip link target -->
+  <main id="main-content" class="w-full pb-[calc(var(--bottom-nav-height)+1rem)] lg:pb-8">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <header class="mb-12 flex flex-col items-center">
+        <img src="https://i.ibb.co/TB5wqMqC/profile.jpg" alt="Profile picture of Anaroul Hasan" class="h-24 w-24 animate-card rounded-full border-4 border-white shadow-lg" style="--animation-delay: 100ms;">
+        <h1 class="mt-4 animate-card text-center text-2xl font-bold sm:text-3xl" style="--animation-delay: 200ms;">Anaroul Hasan</h1>
+        <p class="mt-1 animate-card text-center text-[color:var(--ui-fg-muted)]" style="--animation-delay: 300ms;">The official links, portfolio, experience, and projects for Anaroul Hasan. Connect with Meraz on all platforms.</p>
+      </header>
+      
+      <!-- Links Section -->
+      <section id="linksSection" class="section active" role="tabpanel" aria-labelledby="links-tab">
+        <h2 class="text-2xl font-bold mb-6">My Links</h2>
+        <div class="links-container">
+          <a href="https://facebook.com/helloanaroul" class="link-item">
+            <i class="fab fa-facebook"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="https://twitter.com/helloanaroul" class="link-item">
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+          </a>
+          <a href="https://instagram.com/helloanaroul" class="link-item">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="https://tiktok.com/@helloanaroul" class="link-item">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </a>
+          <a href="https://youtube.com/@helloanaroul" class="link-item">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+          </a>
+          <a href="https://linkedin.com/in/helloanaroul" class="link-item">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/helloanaroul" class="link-item">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="https://t.me/helloanaroul" class="link-item">
+            <i class="fab fa-telegram"></i>
+            <span>Telegram</span>
+          </a>
+          <a href="https://pinterest.com/helloanaroul" class="link-item">
+            <i class="fab fa-pinterest"></i>
+            <span>Pinterest</span>
+          </a>
+          <a href="https://snapchat.com/add/helloanaroul" class="link-item">
+            <i class="fab fa-snapchat"></i>
+            <span>Snapchat</span>
+          </a>
+          <a href="https://discord.gg/YOUR_SERVER_INVITE_CODE" class="link-item">
+            <i class="fab fa-discord"></i>
+            <span>Discord</span>
+          </a>
+          <a href="https://www.reddit.com/user/helloanaroul" class="link-item">
+            <i class="fab fa-reddit"></i>
+            <span>Reddit</span>
+          </a>
+          <a href="https://medium.com/@helloanaroul" class="link-item">
+            <i class="fab fa-medium"></i>
+            <span>Medium</span>
+          </a>
+          <a href="https://dev.to/helloanaroul" class="link-item">
+            <i class="fab fa-dev"></i>
+            <span>Dev.to</span>
+          </a>
+          <a href="https://hashnode.com/@helloanaroul" class="link-item">
+            <i class="fas fa-blog"></i>
+            <span>Hashnode</span>
+          </a>
+          <a href="https://stackoverflow.com/users/helloanaroul" class="link-item">
+            <i class="fab fa-stack-overflow"></i>
+            <span>Stack Overflow</span>
+          </a>
+          <a href="https://gitlab.com/helloanaroul" class="link-item">
+            <i class="fab fa-gitlab"></i>
+            <span>GitLab</span>
+          </a>
+          <a href="https://bitbucket.org/helloanaroul" class="link-item">
+            <i class="fab fa-bitbucket"></i>
+            <span>Bitbucket</span>
+          </a>
+          <a href="https://fiverr.com/helloanaroul" class="link-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Fiverr</span>
+          </a>
+          <a href="https://www.upwork.com/freelancers/~helloanaroul" class="link-item">
+            <i class="fas fa-user-tie"></i>
+            <span>Upwork</span>
+          </a>
+          <a href="https://www.freelancer.com/u/helloanaroul" class="link-item">
+            <i class="fas fa-laptop"></i>
+            <span>Freelancer</span>
+          </a>
+          <a href="https://dribbble.com/helloanaroul" class="link-item">
+            <i class="fab fa-dribbble"></i>
+            <span>Dribbble</span>
+          </a>
+          <a href="https://behance.net/helloanaroul" class="link-item">
+            <i class="fab fa-behance"></i>
+            <span>Behance</span>
+          </a>
+          <a href="https://figma.com/@helloanaroul" class="link-item">
+            <i class="fab fa-figma"></i>
+            <span>Figma</span>
+          </a>
+          <a href="https://gumroad.com/helloanaroul" class="link-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Gumroad</span>
+          </a>
+          <a href="https://buymeacoffee.com/helloanaroul" class="link-item">
+            <i class="fas fa-coffee"></i>
+            <span>Buy Me a Coffee</span>
+          </a>
+          <a href="https://ko-fi.com/helloanaroul" class="link-item">
+            <i class="fas fa-mug-hot"></i>
+            <span>Ko-fi</span>
+          </a>
+          <a href="https://paypal.me/helloanaroul" class="link-item">
+            <i class="fab fa-paypal"></i>
+            <span>PayPal</span>
+          </a>
+          <a href="https://patreon.com/helloanaroul" class="link-item">
+            <i class="fab fa-patreon"></i>
+            <span>Patreon</span>
+          </a>
+          <a href="https://helloanaroul.substack.com" class="link-item">
+            <i class="fas fa-newspaper"></i>
+            <span>Substack</span>
+          </a>
+          <a href="https://open.spotify.com/user/helloanaroul" class="link-item">
+            <i class="fab fa-spotify"></i>
+            <span>Spotify</span>
+          </a>
+          <a href="https://soundcloud.com/helloanaroul" class="link-item">
+            <i class="fab fa-soundcloud"></i>
+            <span>SoundCloud</span>
+          </a>
+          <a href="https://music.apple.com/profile/helloanaroul" class="link-item">
+            <i class="fab fa-apple"></i>
+            <span>Apple Music</span>
+          </a>
+          <a href="https://helloanaroul.bandcamp.com" class="link-item">
+            <i class="fas fa-music"></i>
+            <span>Bandcamp</span>
+          </a>
+          <a href="https://helloanaroul.notion.site" class="link-item">
+            <i class="fas fa-sticky-note"></i>
+            <span>Notion</span>
+          </a>
+          <a href="https://canva.com/helloanaroul" class="link-item">
+            <i class="fas fa-paint-brush"></i>
+            <span>Canva</span>
+          </a>
+          <a href="https://www.producthunt.com/@helloanaroul" class="link-item">
+            <i class="fas fa-fire"></i>
+            <span>Product Hunt</span>
+          </a>
+          <a href="https://helloanaroul.itch.io" class="link-item">
+            <i class="fas fa-gamepad"></i>
+            <span>itch.io</span>
+          </a>
+          <a href="https://codepen.io/helloanaroul" class="link-item">
+            <i class="fab fa-codepen"></i>
+            <span>CodePen</span>
+          </a>
+          <a href="https://codesandbox.io/u/helloanaroul" class="link-item">
+            <i class="fas fa-box"></i>
+            <span>CodeSandbox</span>
+          </a>
+          <a href="https://replit.com/@helloanaroul" class="link-item">
+            <i class="fas fa-terminal"></i>
+            <span>Replit</span>
+          </a>
+          <a href="https://npmjs.com/~helloanaroul" class="link-item">
+            <i class="fab fa-npm"></i>
+            <span>npm</span>
+          </a>
+          <a href="https://snapcraft.io/user/helloanaroul" class="link-item">
+            <i class="fas fa-cube"></i>
+            <span>Snapcraft</span>
+          </a>
+          <a href="https://hub.docker.com/u/helloanaroul" class="link-item">
+            <i class="fab fa-docker"></i>
+            <span>Docker Hub</span>
+          </a>
+          <a href="https://chrome.google.com/webstore/detail/ID" class="link-item">
+            <i class="fab fa-chrome"></i>
+            <span>Chrome Web Store</span>
+          </a>
+          <a href="https://etherscan.io/address/YOUR_WALLET" class="link-item">
+            <i class="fab fa-ethereum"></i>
+            <span>Etherscan</span>
+          </a>
+          <a href="https://bscscan.com/address/YOUR_WALLET" class="link-item">
+            <i class="fas fa-coins"></i>
+            <span>BscScan</span>
+          </a>
+          <a href="https://opensea.io/helloanaroul" class="link-item">
+            <i class="fas fa-diamond"></i>
+            <span>OpenSea</span>
+          </a>
+          <a href="https://lenster.xyz/u/helloanaroul" class="link-item">
+            <i class="fas fa-hashtag"></i>
+            <span>Lens</span>
+          </a>
+          <a href="https://linktr.ee/helloanaroul" class="link-item">
+            <i class="fas fa-link"></i>
+            <span>Linktree</span>
+          </a>
+          <a href="https://helloanaroul.carrd.co" class="link-item">
+            <i class="fas fa-id-card"></i>
+            <span>Carrd</span>
+          </a>
+          <a href="https://about.me/helloanaroul" class="link-item">
+            <i class="fas fa-user-circle"></i>
+            <span>About.me</span>
+          </a>
+          <a href="https://helloanaroul.github.io" class="link-item">
+            <i class="fas fa-globe"></i>
+            <span>Website</span>
+          </a>
+          <a href="https://helloanaroul.blogspot.com" class="link-item">
+            <i class="fas fa-rss"></i>
+            <span>Blog</span>
+          </a>
+          <a href="https://helloanaroul.myportfolio.com" class="link-item">
+            <i class="fas fa-portrait"></i>
+            <span>Portfolio</span>
+          </a>
+          <a href="https://helloanaroul.com/cv.pdf" class="link-item">
+            <i class="fas fa-file-pdf"></i>
+            <span>CV/Resume</span>
+          </a>
+          <a href="tel:01964638683" class="link-item">
+            <i class="fas fa-phone"></i>
+            <span>Phone</span>
+          </a>
+          <a href="mailto:helloanaroul@gmail.com" class="link-item">
+            <i class="fas fa-envelope"></i>
+            <span>Mail</span>
+          </a>
+          <a href="https://wa.me/01964638683" class="link-item">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </section>
+      
+
+    </div>
+  </main>
+  
+  <!-- Error display container for configuration loading failures -->
+  <div id="errorContainer" class="p-8 text-center" style="display: none;">
+    <i class="bi bi-exclamation-triangle-fill text-4xl text-red-500" aria-hidden="true"></i>
+    <h2 class="mt-4 text-xl font-bold">Error Loading Content</h2>
+    <p class="mt-2 text-[color:var(--ui-fg-muted)]">Could not load the required configuration files. Please check the console for more details and ensure the files are in the correct '/config/' directory.</p>
+  </div>
+  
+  <script>
+    // Function to show selected section
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Show selected section
+      document.getElementById(sectionId).classList.add('active');
+      
+      // Update active nav link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // Find and activate the clicked nav link
+      const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(
+        link => link.getAttribute('data-target') === sectionId
+      );
+      
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+    
+    // Initialize the page with links section active
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initially show the links section
+      showSection('linksSection');
+    });
+  </script>
+</body>
+</html>
